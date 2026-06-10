@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Product } from "../types";
 import { formatPrice } from "@/lib/utils/format";
 import BookCover from "./BookCover";
@@ -7,8 +8,18 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <article className="group cursor-pointer">
-      <div className="flex aspect-10/9 items-center justify-center rounded-md border border-gray-200 bg-white p-6 transition-shadow group-hover:shadow-md">
-        <BookCover type={product.coverType} />
+      <div className="relative flex aspect-10/9 items-center justify-center rounded-md border border-gray-200 bg-white p-6 transition-shadow group-hover:shadow-md">
+        {product.imageUrl ? (
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            sizes="(max-width: 768px) 50vw, 25vw"
+            className="object-contain p-6"
+          />
+        ) : (
+          <BookCover type={product.coverType} />
+        )}
       </div>
 
       <div className="mt-4 space-y-1">

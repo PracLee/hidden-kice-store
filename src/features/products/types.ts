@@ -12,5 +12,7 @@ export interface Product {
   discountRate: number | null;
   /** 카드에 보여줄 커버 형태 — 단권 표지 or 5권 세트 */
   coverType: "single" | "set";
+  /** 상품 이미지 경로 (예: /images/products/p01.png). 없으면 CSS 표지로 대체 */
+  imageUrl: string | null;
   sortOrder: number;
 }

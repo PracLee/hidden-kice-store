@@ -12,6 +12,7 @@ const FILTERS: Filter[] = ["전체", "패스", "단품"];
 export default function ProductSection() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>("전체");
   const [keyword, setKeyword] = useState("");
 
@@ -21,6 +22,9 @@ export default function ProductSection() {
     fetchProducts()
       .then((data) => {
         if (!ignore) setProducts(data);
+      })
+      .catch((error: Error) => {
+        if (!ignore) setErrorMessage(error.message);
       })
       .finally(() => {
         if (!ignore) setIsLoading(false);
@@ -103,6 +107,10 @@ export default function ProductSection() {
             </div>
           ))}
         </div>
+      ) : errorMessage ? (
+        <p className="py-24 text-center text-sm text-gray-400">
+          상품을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.
+        </p>
       ) : visibleProducts.length === 0 ? (
         <p className="py-24 text-center text-sm text-gray-400">
           검색 결과가 없습니다.

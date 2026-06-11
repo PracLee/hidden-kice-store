@@ -51,7 +51,7 @@ src/
     └── utils/format.ts         #   가격 포맷 등
 ```
 
-### 설계 의도 (면접 설명 포인트)
+### 설계 의도
 
 **1. 기능(feature) 단위 응집 — `features/products/`**
 

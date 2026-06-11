@@ -44,7 +44,25 @@ export default function HeroBanner() {
           "radial-gradient(ellipse 65% 85% at 70% 35%, #2e2e2e 0%, #161616 55%, #0a0a0a 100%)",
       }}
     >
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 pt-16 lg:flex-row lg:items-stretch lg:justify-between lg:pt-20">
+      {/* 데스크톱: 교재 연출컷이 배너 상하 높이에 꽉 차게, 우측 끝에 풀블리드 배치 */}
+      <div
+        className="absolute inset-y-0 right-0 hidden w-[44%] lg:block"
+        style={{
+          maskImage: "linear-gradient(to right, transparent 0%, black 18%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 18%)",
+        }}
+      >
+        <Image
+          src="/images/hero/hero-books.png"
+          alt="히든카이스 2026 시즌7 교재"
+          fill
+          priority
+          sizes="44vw"
+          className="object-cover object-right"
+        />
+      </div>
+
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 pt-16 lg:flex-row lg:justify-between lg:pt-20">
         {/* 좌측 텍스트 — 문구 변경 가능성이 있어 이미지가 아닌 텍스트로 유지 */}
         <div className="w-full max-w-xl pb-16 lg:pb-20">
           <p className="mb-4 text-sm font-bold tracking-[0.2em] text-accent">
@@ -81,8 +99,8 @@ export default function HeroBanner() {
           </button>
         </div>
 
-        {/* 우측 교재 연출컷 — 좌측 가장자리를 페이드 처리해 배경과 자연스럽게 연결 */}
-        <div className="flex w-full max-w-lg items-end lg:max-w-[560px]">
+        {/* 모바일: 텍스트 아래에 원본 비율로 표시 */}
+        <div className="w-full max-w-lg lg:hidden">
           <Image
             src="/images/hero/hero-books.png"
             alt="히든카이스 2026 시즌7 교재"
@@ -90,10 +108,6 @@ export default function HeroBanner() {
             height={731}
             priority
             className="h-auto w-full"
-            style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 16%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 16%)",
-            }}
           />
         </div>
       </div>

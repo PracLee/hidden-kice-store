@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const FEATURES = [
   {
     title: "실전 적중",
@@ -33,67 +35,18 @@ const FEATURES = [
   },
 ];
 
-const HERO_BOOKS = [
-  { accent: "#ff5a1f", className: "z-30 h-64 w-44 sm:h-80 sm:w-56" },
-  { accent: "#8ab6d6", className: "z-20 h-60 w-40 -ml-24 mt-4 opacity-70 sm:h-72 sm:w-48 sm:-ml-28" },
-  { accent: "#a78bfa", className: "z-10 h-56 w-36 -ml-20 mt-8 opacity-50 sm:h-64 sm:w-44 sm:-ml-24" },
-];
-
-function HeroBook({ accent, className }: { accent: string; className: string }) {
-  return (
-    <div
-      className={`relative flex flex-col justify-between overflow-hidden rounded-sm p-4 shadow-2xl ${className}`}
-      style={{
-        background:
-          "radial-gradient(ellipse 90% 40% at 50% 75%, #333 0%, #0d0d0d 60%, #000 100%)",
-        boxShadow: "8px 8px 30px rgba(0,0,0,.6)",
-      }}
-    >
-      <div
-        className="mt-3 text-center text-[2.4rem] leading-[0.85] font-black tracking-tighter sm:text-[3.2rem]"
-        style={{
-          color: accent,
-          transform: "scaleY(1.6)",
-          transformOrigin: "top",
-          maskImage: "linear-gradient(to bottom, black 30%, transparent 95%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 30%, transparent 95%)",
-        }}
-      >
-        HIDDEN
-      </div>
-      <div className="space-y-2 pb-1 text-center">
-        <div
-          className="flex items-center justify-center gap-2 text-[10px] font-bold tracking-widest"
-          style={{ color: accent }}
-        >
-          <span>HIDDEN</span>
-          <span className="h-3 w-px" style={{ backgroundColor: accent }} />
-          <span>KICE</span>
-        </div>
-        <p className="text-[10px] font-bold tracking-wider text-white/80">
-          2026 <span style={{ color: accent }}>⑦</span> SEASON
-        </p>
-      </div>
-      <div
-        className="pointer-events-none absolute right-2 bottom-14 left-2 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, #fffc, transparent)" }}
-      />
-    </div>
-  );
-}
-
 export default function HeroBanner() {
   return (
     <section
       className="relative overflow-hidden text-white"
       style={{
         background:
-          "radial-gradient(ellipse 70% 90% at 75% 30%, #3d3d3d 0%, #1a1a1a 55%, #0a0a0a 100%)",
+          "radial-gradient(ellipse 65% 85% at 70% 35%, #2e2e2e 0%, #161616 55%, #0a0a0a 100%)",
       }}
     >
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 py-16 lg:flex-row lg:justify-between lg:py-20">
-        {/* 좌측 텍스트 */}
-        <div className="w-full max-w-xl">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 pt-16 lg:flex-row lg:items-stretch lg:justify-between lg:pt-20">
+        {/* 좌측 텍스트 — 문구 변경 가능성이 있어 이미지가 아닌 텍스트로 유지 */}
+        <div className="w-full max-w-xl pb-16 lg:pb-20">
           <p className="mb-4 text-sm font-bold tracking-[0.2em] text-accent">
             HIDDEN KICE —
           </p>
@@ -128,15 +81,20 @@ export default function HeroBanner() {
           </button>
         </div>
 
-        {/* 우측 교재 목업 */}
-        <div className="relative flex items-end pr-4">
-          <div
-            className="absolute -bottom-8 left-1/2 h-10 w-[120%] -translate-x-1/2 rounded-[50%]"
-            style={{ background: "radial-gradient(ellipse, #0006, transparent 70%)" }}
+        {/* 우측 교재 연출컷 — 좌측 가장자리를 페이드 처리해 배경과 자연스럽게 연결 */}
+        <div className="flex w-full max-w-lg items-end lg:max-w-[560px]">
+          <Image
+            src="/images/hero/hero-books.png"
+            alt="히든카이스 2026 시즌7 교재"
+            width={1049}
+            height={731}
+            priority
+            className="h-auto w-full"
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, black 16%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 16%)",
+            }}
           />
-          {HERO_BOOKS.map((book) => (
-            <HeroBook key={book.accent} {...book} />
-          ))}
         </div>
       </div>
 
